@@ -1,0 +1,7 @@
+CREATE TABLE students (
+student_id NUMBER PRIMARY KEY, 
+assignment_score NUMBER, 
+midterm_score NUMBER, 
+final_score NUMBER, 
+final_grade NUMBER
+);

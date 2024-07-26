@@ -1,0 +1,30 @@
+CREATE OR REPLACE
+PROCEDURE calculate_final_grade(
+p_student_id in number,
+p_assignment_weight in number,
+p_midterm_weight in number,
+p_final_weight in number
+) AS
+v_final_grade NUMBER;
+Begin
+--1. Calculate Final Grade ---
+SELECT (assignment_score * p_assignment_weight) + (midterm_score * p_midterm_weight) + (final_score * p_final_weight)
+INTO v_final_grade
+FROM students
+WHERE student_id = p_student_id;
+
+--2. Update the final grade in Students Table --
+UPDATE students
+SET final_grade = v_final_grade
+Where student_id = p_student_id;
+Commit;
+DBMS_OUTPUT.PUT_LINE('Final grade updated for student ID' || p_student_id ||' is:'||v_final_grade);
+
+--3. Proper Exception Handling--
+EXCEPTION
+WHEN NO_DATA_FOUND THEN
+DBMS_OUTPUT.PUT_LINE('Student is not found.');
+WHEN OTHERS THEN
+DBMS_OUTPUT.PUT_LINE('An Error occurred:' || SQLERRM);
+ROLLBACK;
+End;

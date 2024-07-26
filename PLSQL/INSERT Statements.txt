@@ -1,0 +1,5 @@
+INSERT INTO students VALUES (1, 85, 78, 90, NULL);
+INSERT INTO students VALUES (2, 92, 88, 84, NULL);
+INSERT INTO students VALUES (3, 70, 60, 65, NULL);
+
+COMMIT;
