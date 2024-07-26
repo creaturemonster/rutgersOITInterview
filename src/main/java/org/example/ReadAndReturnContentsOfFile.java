@@ -13,9 +13,15 @@ public class ReadAndReturnContentsOfFile {
      */
     public void readFile(File file) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(file));
-        String st;
-        while ((st = br.readLine()) != null){
-            System.out.println(st);
-        }
+       try{
+           String st;
+           while ((st = br.readLine()) != null){
+               System.out.println(st);
+           }
+       }catch (IOException e){
+            new IOException();
+       } finally{
+           br.close();
+       }
     }
 }
